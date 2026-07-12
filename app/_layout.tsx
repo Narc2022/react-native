@@ -23,12 +23,6 @@ const properties = [
     price: '₹99 L',
   },
   {
-    id: '4',
-    title: '2bhk apartment',
-    city: 'Hyderabad',
-    price: '₹60 L',
-  },
-  {
     id: '5',
     title: '3bhk villa',
     city: 'Kolkata',
@@ -37,18 +31,16 @@ const properties = [
 ]
 
 export default function RootLayout() {
-  return <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-    <View style={{ padding: 16 }}>
-      <Text>Subscribe to RoadsideCoder</Text>
+  return <SafeAreaView className="flex-1 bg-white">
+    <View className="p-10">
+      <Text className="text-2xl font-bold">Subscribe to RoadsideCoder</Text>
       <TextInput placeholder="Search city..." placeholderTextColor={"#999"} style={{
         borderWidth: 1,
         borderColor: "#ddd",
         borderRadius: 8,
         padding: 10,
-
         marginTop: 12
       }}>
-
       </TextInput>
       <TouchableOpacity
         onPress={() => { alert("searching...") }}
