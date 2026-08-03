@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 5001;
 
 async function initDB() {
   try {
-    await sql`CREATE TABLE NOT EXISTS transactions (
-        id SERIAL PRIMARY KEY,
-        user_id VARCHAR(255) NOT NULL,
-        title VARCHAR(255) NOT NULL,
-        amount DECIMAL(10,2) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )`;
+    await sql`CREATE TABLE IF NOT EXISTS transactions (
+  id SERIAL PRIMARY KEY,
+  user_id VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)`;
     console.log("Database initialized successfully");
   } catch (error) {
     console.log("Error initializing database:", error);
@@ -24,13 +24,22 @@ async function initDB() {
   }
 }
 
-app.get("/", (req, res, next) => {
-  console.log("Hey we hit a req, the method is", req.method);
-  next();
-});
+// app.post("/api/transactions", async (req, res) => {
+//   try {
+//     const { title, amount, category, user_id } = req.body;
+//     if (!title || !amount || !category || !user_id) {
+//       return res.status(400).json({ error: "Missing required fields" });
+//     }
+//   } catch (error) {}
+// });
 
+// app.get("/", (req, res, next) => {
+//   console.log("Hey we hit a req, the method is", req.method);
+//   next();
+// });
 
-
-app.listen(5000, () => {
-  console.log("Server is running on port 5001");
+initDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 });
