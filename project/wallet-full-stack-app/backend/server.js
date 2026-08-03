@@ -29,7 +29,7 @@ app.get("/", (req, res, next) => {
   next();
 });
 
-CONSOLE.LOG("my port:", process.env.PORT);
+
 
 app.listen(5000, () => {
   console.log("Server is running on port 5001");
